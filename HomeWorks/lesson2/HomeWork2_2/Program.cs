@@ -8,7 +8,7 @@ namespace HomeWork2_2
         {
             //Проверка числа на четность
             Console.WriteLine("Введите любое число");
-            int userNumber = int.Parse(Console.ReadLine());
+            double userNumber = double.Parse(Console.ReadLine());
 
             if (userNumber%2 == 0)
             {
