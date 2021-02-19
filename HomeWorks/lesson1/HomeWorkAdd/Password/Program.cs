@@ -12,25 +12,21 @@ namespace Password
         {
             Console.WriteLine("Введите свой пароль");
             string userPass = (Console.ReadLine());
-            int[] password = userPass.ToCharArray().Select(userPass => int.Parse(userPass.ToString())).ToArray();
+            int[] password = userPass.ToCharArray().Select(i => int.Parse(i.ToString())).ToArray();
             for (int j = 0; j <= userPass.Length; j++)
                 {
                     //int[] password = userPass.ToCharArray().Select(i => int.Parse(i.ToString())).ToArray();
-                    if (password[j] != password[j + 1] && userPass.Length <= 6 && userPass.Length >= 4)
+                    if (password[j] == password[j + 1] || userPass.Length > 6 || userPass.Length < 4)
                     {
-                        continue;
-                    }
-                    else if (j >= userPass.Length)                
-                    {
-                        Console.WriteLine("Пароль подходит!");
-                        break;
+                        Console.WriteLine("Пароль не подходит!");
+                        return;
                     }
                     else
                     {
-                        Console.WriteLine("Пароль не подходит!");
-                        break;
+                       continue;
                     }
                 }
+            Console.WriteLine("Пароль подходит!");
             Console.ReadKey();
             
         }
