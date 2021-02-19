@@ -84,6 +84,9 @@ namespace HomeWork2_1
                         Console.WriteLine("Дождливая зима");
                     }
                     break;
+                default:
+                    Console.WriteLine("Нет такого месяца");
+                    break;
             }
             Console.WriteLine($"Средняя температур за сутки: {avarageTemp}°C");
             Console.ReadKey();
