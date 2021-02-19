@@ -22,7 +22,7 @@ namespace HomeWork2_1
     {
         static void Main(string[] args)
         {
-//Home Work 1,2,5.
+        //Home Work 1,2,5.
             Console.WriteLine("Введите минимальную температуру за сутки");
             double minTemp = double.Parse(Console.ReadLine());
 
