@@ -1,93 +1,62 @@
 ﻿using System;
+using System.Globalization;
 
 namespace HomeWork2_1
 {
-
-    public enum Months :byte
-    {
-        January = 1,
-        February,
-        March,
-        April,
-        May,
-        June,
-        July,
-        August,
-        September,
-        October,
-        November,
-        December,
-    }
     class Program
     {
         static void Main(string[] args)
         {
         //Home Work 1,2,5.
             Console.WriteLine("Введите минимальную температуру за сутки");
-            double minTemp = double.Parse(Console.ReadLine());
-
+            string input1 = Console.ReadLine();
+            double minTemp;
+            bool result1 = double.TryParse(input1,out minTemp);
+                if (result1 == false)
+                {
+                    Console.WriteLine("Нужно ввести число");
+                    return;
+                }
+           
             Console.WriteLine("Введите максимальную температуру за сутки");
-            double maxTemp = double.Parse(Console.ReadLine());
+            string input2 = Console.ReadLine();
+            double maxTemp;
+            bool result2 = double.TryParse(input2, out maxTemp);
+                if (result2 == false)
+                {
+                    Console.WriteLine("Нужно ввести число");
+                    return;
+                }
 
             double avarageTemp = (minTemp + maxTemp) / 2;
 
             Console.WriteLine("Укажите порядковый номер месяца");
-            int userMonth = int.Parse(Console.ReadLine());
+            string input3 = Console.ReadLine();
+            int userMonth;
+            bool result3 = int.TryParse(input3, out userMonth);
+                if (result3 == false)
+                {
+                    Console.WriteLine("Нужно ввести число");
+                    return;
+                }
+                else if (userMonth > 12 || userMonth <= 0)
+                {
+                    Console.WriteLine("Такого месяца нет");
+                    return;
+                }
 
-            switch (userMonth)
-            {
-                case (byte)Months.January:
-                    Console.WriteLine("Январь");
+            DateTimeFormatInfo month = new 
+            DateTimeFormatInfo();
+            string getMonth = month.GetMonthName(userMonth).ToString();
+            Console.WriteLine($"{getMonth}");
+                if (userMonth == 1 || userMonth == 2 ||userMonth == 12)
+                {
                     if (avarageTemp > 0)
                     {
-                        Console.WriteLine("Дождливая зима");
+                    Console.WriteLine("Дождливая зима");
                     }
-                    break;
-                case (byte)Months.February:
-                    Console.WriteLine("Февраль");
-                    if (avarageTemp > 0)
-                    {
-                        Console.WriteLine("Дождливая зима");
-                    }
-                    break;
-                case (byte)Months.March:
-                    Console.WriteLine("Март");
-                    break;
-                case (byte)Months.April:
-                    Console.WriteLine("Апрель");
-                    break;
-                case (byte)Months.May:
-                    Console.WriteLine("Май");
-                    break;
-                case (byte)Months.June:
-                    Console.WriteLine("Июнь");
-                    break;
-                case (byte)Months.July:
-                    Console.WriteLine("Июль");
-                    break;
-                case (byte)Months.August:
-                    Console.WriteLine("Август");
-                    break;
-                case (byte)Months.September:
-                    Console.WriteLine("Сентябрь");
-                    break;
-                case (byte)Months.October:
-                    Console.WriteLine("Октябрь");
-                    break;
-                case (byte)Months.November:
-                    Console.WriteLine("Ноябрь");
-                    break;
-                case (byte)Months.December:
-                    Console.WriteLine("Декабрь");
-                    if (avarageTemp > 0)
-                    {
-                        Console.WriteLine("Дождливая зима");
-                    }
-                    break;
-                default:
-                    Console.WriteLine("Нет такого месяца");
-                    break;
-            }
+                }
+
             Console.WriteLine($"Средняя температур за сутки: {avarageTemp}°C");
             Console.ReadKey();
         }

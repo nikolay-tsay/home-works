@@ -8,14 +8,22 @@ namespace HomeWork2_2
         {
             //Проверка числа на четность
             Console.WriteLine("Введите любое число");
-            double userNumber = double.Parse(Console.ReadLine());
 
-            if (userNumber%2 == 0)
+            string input = Console.ReadLine();
+            double userNumber;
+            bool result = double.TryParse(input, out userNumber);
+
+            if (result == true)
             {
-                Console.WriteLine("Число четное");
+                if (userNumber % 2 == 0)
+                {
+                    Console.WriteLine("Число четное");
+                }
+                else
+                    Console.WriteLine("Число нечетное");
             }
             else
-                Console.WriteLine("Число нечетное");
+                Console.WriteLine("Нужно ввести число");
 
             Console.ReadKey();
         }
