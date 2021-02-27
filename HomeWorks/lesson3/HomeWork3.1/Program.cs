@@ -3,6 +3,7 @@
 namespace HomeWork3._1
 {
     //Написать программу, выводящую элементы двухмерного массива по диагонали
+    
     class Program
     {
         static int[,] GenerateArray(int[,] array)
@@ -16,24 +17,49 @@ namespace HomeWork3._1
                 }
             }
             return array;
-        }  
+        }
+
+        static void PrintArray(int[,] array)
+        {
+            Console.WriteLine("Исходный массив: ");
+            for (int i = 0; i < array.GetLength(0); i++)
+            { 
+                Console.WriteLine("");
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    Console.Write($" {array[i, j]}");
+                }
+            }
+        }
 
         static void Main(string[] args)
         {
-            int[,] myArray = new int[10, 10];
-            myArray = GenerateArray(myArray);
+            Console.Write("Введите величину массива(n * n): ");
+            string sizeInput = Console.ReadLine();
+            int arraySize;
+                if (int.TryParse(sizeInput, out arraySize) == false)
+                {
+                    Console.WriteLine("Нужно ввести число");
+                }
 
-            Console.WriteLine("Исходный массив: ");
+            int[,] myArray = new int[arraySize, arraySize];
+            
+            myArray = GenerateArray(myArray);
+            PrintArray(myArray);
+            
+            Console.Write("\nГлавная диагональ: ");
                 for (int i = 0; i < myArray.GetLength(0); i++)
                 {
-                    Console.WriteLine("");
-                    for (int j = 0; j < myArray.GetLength(1); j++)
-                    {
-                        Console.Write($" {myArray[i, j]}");
-                    }
+                    Console.Write(myArray[i, i] + " ");
+                }
+                
+            Console.Write("\nПротивоположная диагональ: ");
+                for (int j = myArray.GetLength(0) - 1, i = 0; j >= 0; i++, j--)
+                {
+                    Console.Write(myArray[i, j] + " ");
                 }
             
-
+            Console.ReadLine();
         }
     }
 }

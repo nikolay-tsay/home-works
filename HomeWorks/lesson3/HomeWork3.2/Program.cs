@@ -35,15 +35,6 @@ namespace HomeWork3._2
             Console.WriteLine($"\t{catalog[0, 2]}\t{catalog[1, 2]}");
             Console.WriteLine($"\t{catalog[0, 3]}\t\t{catalog[1, 3]}");
             Console.WriteLine($"\t{catalog[0, 4]}\t\t{catalog[1, 4]}");
-
-            /*for (int i = 0; i < catalog.GetLength(0); i++)
-            {
-                Console.WriteLine("");
-                for (int j = 0; j < catalog.GetLength(1); j++)
-                {
-                    Console.WriteLine($" {catalog[i, j]}");
-                }
-            }*/
         }
     }
 }
