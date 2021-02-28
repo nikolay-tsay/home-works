@@ -8,7 +8,7 @@ namespace HomeWork3._3
     {
         static void Main(string[] args)
         {
-            string input = Console.ReadLine();
+            string input = Console.ReadLine(); 
             char[] array = input.ToCharArray();
             //Решение через цикл
             for (int i = array.Length - 1; i <= array.Length; i--)
