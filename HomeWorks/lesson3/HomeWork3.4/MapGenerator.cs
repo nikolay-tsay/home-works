@@ -1,4 +1,3 @@
-
 namespace HomeWork3._4
 {
     class MapGenerator
@@ -28,7 +27,7 @@ namespace HomeWork3._4
             {
                 for (int j = 0; j < mapSize; j++)
                 {
-                    map[i, j] = '\0';
+                    map[i, j] = '.';
                 }
             }
         }

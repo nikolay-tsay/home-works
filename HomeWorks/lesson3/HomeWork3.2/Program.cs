@@ -22,10 +22,10 @@ namespace HomeWork3._2
                 
                 {
                  "743-93-53",
-                 "929-55-04",
+                 "hadaye2060@dxecig.com",
                  "967-12-22",
                  "432-98-30",
-                 "745-19-90" 
+                 "thassine@gmail.com" 
                 } 
             };
             Console.WriteLine("\tТелефонный справочник\n");

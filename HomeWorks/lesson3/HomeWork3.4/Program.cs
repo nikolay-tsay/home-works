@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net;
 
 namespace HomeWork3._4
 {
@@ -15,7 +14,7 @@ namespace HomeWork3._4
                 if (i != 10)
                     Console.Write(" " + i + " ");
                 else
-                    Console.Write(" " + i + " ");
+                    Console.Write(" " + i + "");
 
                 for (int j = 1; j < MapGenerator.mapSize - 1; j++)
                 {
@@ -100,6 +99,7 @@ namespace HomeWork3._4
                 if (Console.ReadKey().Key == ConsoleKey.Spacebar)
                 {
                     ResetMap(map, ships);
+                    Console.Clear();
                 }
                 else
                     break;

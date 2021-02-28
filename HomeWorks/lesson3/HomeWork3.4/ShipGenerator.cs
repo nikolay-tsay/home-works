@@ -40,7 +40,6 @@ namespace HomeWork3._4
                         {
                             shipPosition[y, x + i] = 'X';
                         }
-
                         map.SetMap(this);
                         return true;
                     }
