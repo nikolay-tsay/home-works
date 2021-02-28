@@ -1,0 +1,13 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/modules.xml
+/contentModel.xml
+/projectSettingsUpdater.xml
+/.idea.lesson3.iml
+# Datasource local storage ignored files
+/../../../../../../../../../../../../../:\Users\tsayn\Desktop\Все\IT\repos\home-works\HomeWorks\lesson3\.idea\.idea.lesson3\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
