@@ -1,4 +1,7 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
+
 
 namespace lesson5._5
 {
@@ -16,7 +19,15 @@ namespace lesson5._5
     {
         static void Main(string[] args)
         {
+            if (File.Exists("tasks.json"))
+            {
+                string json = File.ReadAllText("tasks.json");
+                ToDoList.List = new List<ToDo>(JsonSerializer.Deserialize<List<ToDo>>(json));
+            }
+            ToDoList.ShowToDoList();
+            ToDoList.EditList();
             
+            File.WriteAllText("tasks.json", JsonSerializer.Serialize(ToDoList.List));
         }
     }
 }

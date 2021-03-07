@@ -23,7 +23,6 @@ namespace lesson5._3
             Console.WriteLine("Числа были сохранены в файл bytes.bin");
             
             Console.ReadLine();
-
         }
     }
 }
