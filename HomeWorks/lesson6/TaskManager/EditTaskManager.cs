@@ -1,72 +1,94 @@
 using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 
 namespace TaskManager
 {
     public class EditTaskManager
     {
+        private Process[] tasks = Process.GetProcesses();
+        private int _idAction;
+        private string _userAction;
+        
         public void GetAllTasks()
         {
+            Console.WriteLine("\tДиспетчер задач");
             foreach (Process process in Process.GetProcesses())
             {
                 Console.WriteLine($"ID: {process.Id}   \t\tName: {process.ProcessName}");
             }
             Console.WriteLine("Для завершения процесса введите ID или имя процесса. Для выхода введите Exit");
             
-            string userAction = Console.ReadLine();
-            int idAction;
-            if (userAction == null || userAction == string.Empty)
+            try 
+            {
+                _userAction = Console.ReadLine().ToLower();
+                if(_userAction == "exit")
+                {
+                    Console.WriteLine("Завершение программы");
+                    Thread.Sleep(1000);
+                    Process.GetCurrentProcess().Kill();
+                }
+                else if(int.TryParse(_userAction, out _idAction))
+                {
+                    KillById(_idAction);
+                }
+                else
+                    KillByName(_userAction);
+            }
+            catch (NullReferenceException)
             {
                 Console.WriteLine("Вы ничего не ввели");
-                Thread.Sleep(3000);
+            }
+            finally
+            {
+                Thread.Sleep(2000);
                 GetAllTasks();
             }
-            else if (int.TryParse(userAction, out idAction))
+        }
+
+        private void KillById(int action)
+        {
+            try
             {
-                try
-                {
-                    Process tasks = Process.GetProcessById(idAction);
-                    tasks.Kill();
-                    Console.WriteLine($"Процесс с ID {idAction} остановлен");
-                }
-                catch
-                {
-                    throw new Exception("Процесс с таким ID не существует");
-      
-                }
-                finally
-                {
-                    Thread.Sleep(3000);
-                    Console.Clear();
-                    GetAllTasks();
-                }
+                Process taskById = Process.GetProcessById(action);
+                taskById.Kill();
+                Console.WriteLine($"Процесс с ID {action} остановлен");
             }
-            else if(userAction.ToUpper() == "EXIT")
+            catch (ArgumentException)
             {
-                Console.WriteLine("Завершение программы");
-                Thread.Sleep(3000);
+                Console.WriteLine($"Процесс с ID {action} не найден!");
             }
-            else
+            finally 
             {
-                try
+                Thread.Sleep(2000);
+                Console.Clear();
+                GetAllTasks();
+            }
+        }
+
+        private void KillByName(string action)
+        {
+            try
+            {
+                Process target = tasks.First(p => p.ProcessName.ToLower() == action);
+                target.Kill();
+                Console.WriteLine($"Процесс под именем {action} остановлен");
+            }
+            catch (InvalidOperationException)
+            {
+                if (action == String.Empty)
                 {
-                    foreach (var process in Process.GetProcessesByName(userAction))
-                    {
-                        process.Kill();
-                    }
-                    Console.WriteLine($"Процесс под именем {userAction} остановлен");
+                    Console.WriteLine("Вы ничего не ввели");
                 }
-                catch
-                {
-                    throw new Exception("Процесса с такими именем не существует");
-                }
-                finally
-                {
-                    Thread.Sleep(3000);
-                    Console.Clear();
-                    GetAllTasks();
-                }
+                else
+                    Console.WriteLine($"Процесс с именем {action} не найден!");
+            }
+            finally
+            {
+                Thread.Sleep(2000);
+                Console.Clear();
+                GetAllTasks();
             }
         }
     }
